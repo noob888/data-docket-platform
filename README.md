@@ -1,8 +1,8 @@
 # about Datadocket
 - This is a student software engineering project intended to build a functioning website prototype for a client.
 - The client requested a website with very similar functionality, look, and feel to Kaggle.com.
-- This code was built with Python Django in Winter 2023 for Mohawk College's software engineering course.
-- The team involved is Aakif Lokhandwala, Matt Pluim, Krysto Ayala, and John Benjamin
+- This code was built with Python Django in Winter 2023 in collaboration with Mohawk College's software engineering students.
+- The team involved is Nikhil,  Aakif Lokhandwala, Matt Pluim, Krysto Ayala, and John Benjamin
 
 # running the project for the first time
 - download or clone the project from Github
