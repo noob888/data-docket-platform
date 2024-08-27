@@ -1,0 +1,75 @@
+{% extends 'core/base.html' %}
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+  <div style="display: flex; justify-content: center; align-items: center;">
+    <div style="background-color: #f0f0f0; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); padding: 40px; max-width: 400px; width: 100%;">
+      <h1 style="text-align: center; margin-bottom: 30px;">Sign Up</h1>
+      <form method="post" style="display: flex; flex-direction: column;">
+        {% csrf_token %}
+
+        {% if form.errors %}
+        <div class="bg-red-100 border-l-4 border-red-400 text-red-700 p-4" role="alert">
+            <ul>
+                {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                <li>{{ field }} - {{ error }}</li>
+                {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <label style="margin-bottom: 10px;">Username:</label>
+        {{ form.username }}
+        <span class="help-text">{{ form.username.help_text }}</span>
+        
+        <label style="margin-bottom: 10px; margin-top: 10px;">Email:</label>
+        {{ form.email }}
+        <span class="help-text">{{ form.email.help_text }}</span>
+        
+        <label style="margin-bottom: 10px; margin-top: 10px;">First Name:</label>
+        {{ form.first_name }}
+        <span class="help-text">{{ form.first_name.help_text }}</span>
+        
+        <label style="margin-bottom: 10px; margin-top: 10px;">Last Name:</label>
+        {{ form.last_name }}
+        <span class="help-text">{{ form.last_name.help_text }}</span>
+        
+        <label style="margin-bottom: 10px; margin-top: 10px;">Password:</label>
+        {{ form.password1 }}
+        <span class="help-text">{{ form.password1.help_text }}</span>
+        
+        <label style="margin-bottom: 10px; margin-top: 10px;">Confirm Password:</label>
+        {{ form.password2 }}
+        <span class="help-text">{{ form.password2.help_text }}</span>
+
+        <label style="margin-bottom: 10px;">Phone number:</label>
+        {{ form.phone_number }}
+        <span class="help-text">{{ form.phone_number.help_text }}</span>
+
+        <label style="margin-bottom: 10px; margin-top: 10px;">University:</label>
+        {{ form.university }}
+        <span class="help-text">{{ form.university.help_text }}</span>
+
+        <label style="margin-bottom: 10px; margin-top: 10px;">Company:</label>
+        {{ form.company }}
+        <span class="help-text">{{ form.company.help_text }}</span>
+
+        <button type="submit" style="background-color: #4CAF50; color: white; border: none; padding: 10px 20px; text-align: center; text-decoration: none; font-size: 16px; margin-top: 20px; border-radius: 5px; cursor: pointer;">Sign up</button>
+      </form>
+      <div style="text-align: center; margin-top: 20px;">
+        <a href="{% url 'login' %}" style="color: #4CAF50; text-decoration: none;">Already have an account? Login here</a>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .help-text {
+      display: block;
+      margin-top: 5px;
+      font-size: 14px;
+      color: gray;
+    }
+  </style>
+{% endblock %}

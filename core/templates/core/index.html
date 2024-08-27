@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Home{% endblock %}
+{% load static %}
+
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+</head>
+
+<div class="background">
+
+    <h2>Top 5 Competitions</h2>
+    <div class=" spinner">
+        {%if competitions_list%}
+
+        <hr>
+        {% for competition in competitions_list|slice:":5" %}
+        <a href="{% url 'competition_detail' competition_id=competition.competition_id %}">
+            {% include 'components/item_tile.html' with item=competition %}
+        </a>
+        {% endfor %}
+
+        {% endif %}
+    </div>
+</div>
+<br>
+<div class="background">
+    <h2>Top 5 Datasets</h2>
+    {%if datasets_list%}
+    <div class="col-sm-12 col-md-12 col-lg-9 pb-4 spinner">
+        <hr>
+        {% for dataset in datasets_list|slice:":5" %}
+        <a href="{% url 'dataset_detail' dataset_id=dataset.dataset_id %}">
+            {% include 'components/item_tile.html' with item=dataset %}
+        </a>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+{% endblock %}

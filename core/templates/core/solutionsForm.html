@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Solution Form{% endblock %}
+
+{% block content %}
+    <head>
+        <link rel="stylesheet" href="{% static 'form.css' %}">
+    </head>
+<div class="container mt-5">
+    <h4 style="text-transform: uppercase;" class="card-title font-weight-bold text-center">Upload a Solution</h4>
+    <hr>
+    <form method="post" class="my-form" enctype="multipart/form-data" url="{% url 'upload_solution' competition_id=competition_id %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% load static %}
+
+    <head>
+        <link rel="stylesheet" href="{% static 'item_tile.css' %}">
+    </head>
+
+    <div class="item_tile">
+        <div class="my-div">
+            <img src="{{ item.banner_uri }}" alt="Random Image">
+        </div>
+        <div class="title">{{ item.name }}</div>
+        <div class="mini_desc">{{ item.description }}</div>
+        <div class="display_value">
+            {% if item.start_date %}
+                {{ item.start_date|date:"Y" }} - {{ item.end_date|date:"Y" }} | {{ item.prize_amount }} $
+            {% else %}
+                {{ item.count_of_downloads }} Downloads
+            {% endif %}
+           
+        </div>
+    </div>
+</a>

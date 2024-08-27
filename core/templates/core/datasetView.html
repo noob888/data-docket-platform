@@ -1,0 +1,30 @@
+{% extends 'core/eventView.html' %}
+{% load static %}
+{% block title %}Dataset View{% endblock %}
+
+{% block content %}
+    <head>
+        <link rel="stylesheet" href="{% static 'temp_view.css' %}">
+    </head>
+    {% if competition %}
+    <div>
+        <h1>Dataset is a part of:</h1>
+    
+        {% for comp in competition %}
+        
+            <div style="display: flex; flex-wrap: wrap;">
+            <h2>&nbsp;&nbsp;&nbsp;{{ comp.name }}</h2> 
+            </div>
+    
+        {% endfor %}
+
+    </div>
+    {% endif %}
+    {% if user.is_authenticated and this_user.user_id %}
+        <div>
+            Uploaded By:
+            {{ this_user.first_name }} {{ this_user.last_name }}
+            <a href="{% url 'profile' user_id=this_user.user_id %}">View Profile</a>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'navbar.css' %}">
+</head>
+
+<nav  class="w-48 px-6 py-6">
+    <a href="{% url 'index' %}">
+        <img src="{% static 'datadocket_img.png' %}" alt="DataDocket">
+    </a>
+    <div class="mt-10">
+        <a href="{% url 'competitions' %}" class="block text-lg py-2">Competitions</a>
+        <a href="{% url 'dataset_list' %}" class="block text-lg py-2">Datasets</a>
+        <a href="{% url 'rankings' %}" class="block text-lg py-2">Rankings</a>
+    </div>
+</nav>

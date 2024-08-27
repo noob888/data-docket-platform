@@ -1,0 +1,31 @@
+header {
+    background-color: #1a1718;
+  }
+  
+  h1 {
+    color: #d5422e;
+  }
+  
+  button:focus:not(:focus-visible) {
+    outline: none;
+  }
+  
+  button:hover {
+    background-color: #393536;
+    border-radius: 4px;
+  }
+  
+  button {
+    color: #d5422e;
+    padding: 8px 16px;
+  }
+  
+  a {
+    color: #d5422e;
+    text-decoration: underline #272324;
+  }
+  
+  a:hover {
+    text-decoration-color: #393536;
+  }
+  

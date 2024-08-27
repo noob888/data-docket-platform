@@ -1,0 +1,33 @@
+{% extends 'core/events.html' %}
+{% block title %}Competitions Form{% endblock %}
+{% load static %}
+
+{% block content %}
+    <head>
+        <link rel="stylesheet" href="{% static 'form.css' %}">
+    </head>
+    <form method="post" class="my-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" class="my-btn">
+    </form>
+
+    <style>
+        .premium-checkbox {
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        label[for=id_premium] {
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        input[type=submit] {
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'core/base.html' %}
+{% block title %}Competitions Manager{% endblock %}
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'form.css' %}">
+</head>
+<div class="container mx-auto">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-3 pb-4">
+            <div class="card p-4">
+                <h4 style="text-transform: uppercase;" class="card-title font-weight-bold text-center"> {{ competition.name|title }}</h4>
+                  <hr>
+            </div>
+          </div>
+          {% if contestants %}
+          <div class="col-sm-12 col-md-12 col-lg-9 pb-4">
+            <h4 class="card-title font-weight-bold text-center">Contestants</h4>
+            <hr>
+            {% for contestant in contestants %}
+                <div class="card mb-3">
+                    <div class="contestant-card card-body flex">
+                        <div>
+                        <h5 class="card-title">User: {{ contestant.pk }}</h5>
+                        <p class="card-text">Competition: {{competition.name}}</p>
+                        
+                        </div>
+                        <div class="contestant-button">
+                            <a href="{% url 'remove_submission' contestant_id=contestant.contestant_id competition_id=contestant.competition_id %}">
+                                <button>Remove</button>
+                            </a>
+                          
+                            {% comment %} add Submission condition {% endcomment %}
+                            <a href="{{ contestant.submission_url  }}"><button><h2>View Submission</h2></button></a>
+                            <br>   <br>                     
+                            <label for="rankSelect">Select rank:</label>
+                            <select name="rank" id="rankSelect">
+                            <option value="1">Rank 1</option>
+                            <option value="2">Rank 2</option>
+                            <option value="3">Rank 3</option>
+                            </select>
+                            
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}     
+        {% if is_ended %}
+       
+            <button> Confirm Winners!</button>
+       
+        {% endif %} 
+        {% if is_started %}
+        
+        <div class="col-sm-12 col-md-12 col-lg-9 pb-4">
+            <h4 class="card-title font-weight-bold text-center">Edit Competitions</h4>
+            <hr>
+            <div class="flex flex-wrap">
+                <form method="POST" class="my-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ competition_form.as_p }}
+                    <input type="submit" value="Update" class="my-btn">
+                </form>
+            </div>
+        </div> 
+        {% endif %}     
+
+       
+    </div>
+</div>
+<style>
+    .premium-checkbox {
+        display: inline-block;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+
+    label[for=id_premium] {
+        display: inline-block;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+
+    input[type=submit] {
+        display: block;
+        margin-top: 20px;
+    }
+</style>
+
+{% endblock %}

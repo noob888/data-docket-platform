@@ -1,0 +1,63 @@
+/* Styles for the table */
+table {
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    margin: 50px auto;
+    max-width: 800px;
+    width: 100%;
+    background-color: #272324;
+  }
+  
+  /* Styles for the table header */
+  th {
+    background-color: #d5422e;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px;
+    text-align: left;
+  }
+  
+  /* Styles for the table rows */
+  tr {
+    background-color: #393536;
+    color: #fff;
+    font-size: 16px;
+    padding: 20px 12px;
+  }
+  
+  /* Styles for alternating row colors */
+  tr:nth-child(even) {
+    background-color: #272324;
+  }
+  
+  /* Styles for the user name link */
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Add a border to the bottom of each row */
+  tr:not(:last-child) {
+    border-bottom: 1px solid #000;
+  }
+  
+  /* Center the numbers in the first column */
+  td:first-child {
+    text-align: center;
+  }
+  
+  /* Align the user names to the left */
+  td:nth-child(2) {
+    text-align: left;
+  }
+  
+  /* Center the ranking points */
+  td:last-child {
+    text-align: center;
+  }
+  

@@ -1,0 +1,40 @@
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'header.css' %}">
+</head>
+
+<!-- Header -->
+<header class=" px-6 py-4 flex justify-between items-center">
+    <button class="focus:outline-none lg:hidden">
+        <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+            <path
+                d="M4 6h16M4 12h16M4 18h16"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            ></path>
+        </svg>
+    </button>
+    <h1 class="text-2xl font-semibold">{{ page_title }}</h1>
+    <div class="flex justify-end">
+
+       
+       
+        {% if user.is_authenticated %}
+            <a href="{% url 'rankings' %}"><button class="text-gray-500 focus:outline-none">Points</button></a>
+            <form method="get" action="{% url 'profile' user_id=user.user_id %}">
+                <button type="submit" class="text-gray-500 focus:outline-none ml-4" style="text-transform: uppercase;">
+                {{ user.username }}
+                </button>
+            </form>
+            <form method="post" action="{% url 'logout' %}?next={% url 'login' %}">
+                {% csrf_token %}
+                <button type="submit" class="text-gray-500 focus:outline-none ml-4">Logout</button>
+            </form>
+        {% else %}
+        <button class="focus:outline-none ml-4" onclick="location.href='{% url 'login' %}'">Login</button>
+        {% endif %}
+    </div>
+</header>

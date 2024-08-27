@@ -1,0 +1,114 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+<style>
+    .delete-btn-profile {
+        width: 90%;
+        margin: auto;
+        border-radius: 5px;
+        background-color: #D5422F;
+        text-align: center;
+    }
+
+    .delete-btn-profile button {
+        width: 100%;
+        color: white;
+    }
+
+    .delete-btn-profile a {
+        margin: 0px !important;
+    }
+</style>
+
+<head>
+    <link rel="stylesheet" href="{% static 'temp_view.css' %}">
+</head>
+<!--User-->
+<div class="container mx-auto">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-3 pb-4">
+            <div class="card p-4">
+                {% if my_profile %}
+                <h4 class="card-title font-weight-bold text-center">Hello, {{ this_user.username|title }}!</h4>
+                <hr>
+                {% endif %}
+                <div class="card-text">
+                    <p class="text-muted mb-0" style="font-size: 12px">Username:</p>
+                    <p>{{ this_user.username }}</p>
+                    {% if my_profile %}
+                    <p class="text-muted mb-0" style="font-size: 12px">Name:</p>
+                    <p>{{ this_user.first_name }} {{ this_user.last_name }}</p>
+                    <p class="text-muted mb-0" style="font-size: 12px">Email:</p>
+                    <p>{{ this_user.email }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {% if participated_competitions_list %}
+        <div class="col-sm-12 col-md-12 col-lg-9 pb-4">
+            <h4 class=" card-title font-weight-bold text-center">Joined Competitions</h4>
+            <hr>
+            <div class="flex flex-wrap">
+                {% for competition in participated_competitions_list %}
+                <a href="{% url 'competition_detail' competition_id=competition.competition_id %}">
+                    {% include 'components/item_tile.html' with item=competition %}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        <br>
+        <br>
+        {% if competitions_list %}
+        <div class="col-sm-12 col-md-12 col-lg-9 pb-4">
+            <h4 class=" card-title font-weight-bold text-center">Hosted Competitions</h4>
+            <hr>
+            <div class="flex flex-wrap">
+                {% for competition in competitions_list %}
+                <div class="flex-column">
+                    <a href="{% url 'competition_detail' competition_id=competition.competition_id %}">
+                        {% include 'components/item_tile.html' with item=competition %}
+                    </a>
+                    {% if my_profile %}
+                    <div class="delete-btn-profile">
+                        <a href="{% url 'competition_delete' pk=competition.pk %}" style="margin-left: 10px;">
+                            <button>Delete Competition</button>
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {%if datasets_list%}
+        <br>
+        <div class="col-sm-12 col-md-12 col-lg-9 pb-4">
+            <h4 class=" card-title font-weight-bold text-center">Uploaded Datasets</h4>
+            <hr>
+            <div class="flex flex-wrap">
+                {% for dataset in datasets_list %}
+                <div class="flex-column">
+                    <a href="{% url 'dataset_detail' dataset_id=dataset.dataset_id %}">
+                        {% include 'components/item_tile.html' with item=dataset%}
+                    </a>
+                    {% if my_profile %}
+                    <div class="delete-btn-profile">
+                        <a href="{% url 'dataset_delete' pk=dataset.pk %}" style="margin-left: 10px;">
+                            <button>Delete Dataset</button>
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

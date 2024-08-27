@@ -1,0 +1,49 @@
+{% extends 'core/eventView.html' %}
+{% load static %}
+{% block title %}Competition View{% endblock %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'temp_view.css' %}">
+
+    <link rel="stylesheet" href="{% static 'rankings.css' %}">
+
+
+</head>
+<style>
+    th{
+        text-align: center;
+    }
+</style>
+<h1>{{ competition.name }}</h1>
+<h2>Prize Amount: ${{ competition.prize_amount }}</h2>
+<p>Submissions accepted between {{ competition.start_date }} through {{ competition.end_date }}</p>
+<p>{{ competition.description }}</p>
+<!-- if user is logged in ONLY -->
+{% if user.is_authenticated %}
+    {% for row in dataset %}
+    <a href="{{ row.file_uri }}">
+        <button>Download {{ row.name }}</button>
+    </a><br />
+    {% endfor %}
+    {% if contestants %}
+
+
+        <table>
+            <tr>
+                <th>User Name</th>
+                <th>Score</th>
+            </tr>
+            {% for contestant in contestants %}
+            <tr>
+               
+                <td><a href="{% url 'profile' user_id=user.user_id %}">{{ contestant.username }}</a></td>
+                <td>{{ contestant.score }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    {% endif %}
+{% endif %}
+{% endblock %}

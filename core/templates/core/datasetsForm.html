@@ -1,0 +1,14 @@
+{% extends 'core/events.html' %}
+{% block title %}Dataset Form{% endblock %}
+{% load static %}
+
+{% block content %}
+    <head>
+        <link rel="stylesheet" href="{% static 'form.css' %}">
+    </head>
+    <form method="post" class="my-form" enctype="multipart/form-data" url= {% url 'upload_dataset' %}>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="my-btn">Create</button>
+    </form>
+{% endblock %}

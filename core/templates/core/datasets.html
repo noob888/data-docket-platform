@@ -1,0 +1,16 @@
+{% extends 'core/events.html' %}
+
+{% block title %}datasets{% endblock %}
+
+{% block content %}
+
+<div class="item-block mt-6 px-6 py-12 rounded-xl">
+    {% for dataset in datasets %}
+    <a href="{% url 'dataset_detail' dataset_id=dataset.dataset_id %}">
+    {% include 'components/item_tile.html' with item=dataset %}
+    </a>
+
+    {% endfor %}
+</div>  
+
+{% endblock %}
